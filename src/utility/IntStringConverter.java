@@ -1,11 +1,11 @@
-package view;
+package utility;
 
 import javafx.util.StringConverter;
 
-public class StringIntegerConverter extends StringConverter<Number> {
+public class IntStringConverter extends StringConverter<Number> {
     private final int emptyValue;
 
-    public StringIntegerConverter(int emptyValue) {
+    public IntStringConverter(int emptyValue) {
         this.emptyValue = emptyValue;
     }
 

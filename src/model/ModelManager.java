@@ -5,16 +5,19 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChatModelManager {
+public class ModelManager implements Model {
     private List<Message> messageList;
     private List<PrivateChat> privateMessageList;
-    private PropertyChangeSupport support;
+    private PropertyChangeSupport property;
+
+    private UserList everyUsers;
 
 
-    public ChatModelManager() {
+    public ModelManager() {
         privateMessageList = new ArrayList<>();
         messageList = new ArrayList<>();
-        support = new PropertyChangeSupport(this);
+        property = new PropertyChangeSupport(this);
+        everyUsers= new UserList();
     }
     public void addMessage(Message message) {
         messageList.add(message);
@@ -65,10 +68,36 @@ public class ChatModelManager {
     }
 
 
-    public void addListener(String eventName, PropertyChangeListener listener) {
-        support.addPropertyChangeListener(eventName, listener);
+
+
+    @Override
+    public boolean addUser(User user) {
+        return false;
     }
-    public void removeListener(String eventName, PropertyChangeListener listener) {
-        support.removePropertyChangeListener(eventName, listener);
+
+    public void removeUser(User user) {
+        everyUsers.removeUser(user);
+    }
+
+    public boolean isConnectionPossible(String userName) {
+        return !(everyUsers.allUserNames().contains(userName));
+    }
+
+    public boolean isLoginPossible(User user) {
+        return everyUsers.contains(user);
+    }
+
+    public List<String> getAllUsers() {
+        return everyUsers.allUserNames();
+    }
+
+    @Override
+    public void addListener(PropertyChangeListener listener) {
+        property.addPropertyChangeListener(listener);
+    }
+
+    @Override
+    public void removeListener(PropertyChangeListener listener) {
+        property.removePropertyChangeListener(listener);
     }
 }
