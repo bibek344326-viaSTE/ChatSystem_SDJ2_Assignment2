@@ -38,7 +38,7 @@ private ChatTabsViewModel viewModel;
         onlineUsersList.setItems(viewModel.getOnlineUsersList));
         messagesList.setItems(viewModel.getMessagesList());
         errorLabel.textProperty().bind(viewModel.getErrorLabel());
-        messagesList.setItems(viewModel.getMessagesList());
+       globalList.setItems(viewModel.getMessagesList());
 
         @FXML
         private void onSend() {
