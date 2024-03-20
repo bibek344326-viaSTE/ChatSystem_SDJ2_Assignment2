@@ -9,24 +9,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ChatTabsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ChatTabsController">
     <children>
         <TabPane layoutY="2.0" prefHeight="468.0" prefWidth="579.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
-                <Tab fx:id="globalChat" text="Global Chat">
+                <Tab text="Global Chat">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="439.0" prefWidth="574.0">
                             <children>
                                 <TextField fx:id="globalMessage" layoutX="18.0" layoutY="390.0" prefHeight="43.0" prefWidth="282.0" />
-                                <Button fx:id="sendButton" layoutX="335.0" layoutY="395.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="79.0" text="Send" />
-                                <Button fx:id="logoutButton" layoutX="474.0" layoutY="395.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="68.0" text="Logout" />
+                                <Button layoutX="335.0" layoutY="395.0" mnemonicParsing="false" onAction="#sendButton" prefHeight="34.0" prefWidth="79.0" text="Send" />
+                                <Button layoutX="474.0" layoutY="395.0" mnemonicParsing="false" onAction="#logoutButton" prefHeight="34.0" prefWidth="68.0" text="Logout" />
                                 <ListView fx:id="globalList" layoutX="18.0" layoutY="16.0" prefHeight="362.0" prefWidth="534.0" />
                             </children>
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab fx:id="privateChat" text="Private Chat">
+                <Tab text="Private Chat">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="466.0" prefWidth="562.0">
                             <children>
@@ -42,11 +41,11 @@
                                         <Font size="14.0" />
                                     </font>
                                 </Label>
-                                <TextField layoutX="29.0" layoutY="375.0" prefHeight="26.0" prefWidth="180.0" />
-                                <TextField layoutX="248.0" layoutY="375.0" prefHeight="26.0" prefWidth="299.0" />
-                                <Button layoutX="57.0" layoutY="407.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="85.0" text="Selet User" />
-                                <Button layoutX="467.0" layoutY="409.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="82.0" text="Send" />
-                                <Label layoutX="196.0" layoutY="408.0" prefHeight="34.0" prefWidth="270.0" text="Select a user to proceed">
+                                <TextField fx:id="selected" layoutX="29.0" layoutY="375.0" prefHeight="26.0" prefWidth="180.0" />
+                                <TextField fx:id="sendMessage" layoutX="248.0" layoutY="375.0" prefHeight="26.0" prefWidth="299.0" />
+                                <Button layoutX="57.0" layoutY="407.0" mnemonicParsing="false" onAction="#selectUserButton" prefHeight="31.0" prefWidth="85.0" text="Selet User" />
+                                <Button layoutX="467.0" layoutY="409.0" mnemonicParsing="false" onAction="#sendMessageButton" prefHeight="27.0" prefWidth="82.0" text="Send" />
+                                <Label fx:id="errorLabel" layoutX="196.0" layoutY="408.0" prefHeight="34.0" prefWidth="270.0" text="Select a user to proceed" textFill="RED">
                                     <font>
                                         <Font size="14.0" />
                                     </font>
