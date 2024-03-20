@@ -17,6 +17,8 @@ import java.util.List;
 
 public class ChatTabsViewModel implements PropertyChangeListener {
     private Model model;
+
+    private ViewState viewstate;
     private ObservableList<Message> messages;
     private ObservableList<String> userList;
     private ObservableList<Message> privateMessages;
@@ -26,13 +28,10 @@ public class ChatTabsViewModel implements PropertyChangeListener {
 
     public ChatTabsViewModel(Model model) {
         this.model = model;
+        this.model.addListener(this);
         selectedItem = new SimpleStringProperty();
         userError = new SimpleStringProperty();
         privateMessages = FXCollections.observableArrayList();
-        model.addListener("addMessage", this::messageAdded);
-        model.addListener("userAdded", this::userAdded);
-        model.addListener("userRemoved", this::userRemoved);
-        model.addListener("addPrivateMessage", this::privateMessageAdded);
         loadMessages();
         loadUsers();
 
@@ -76,8 +75,8 @@ public class ChatTabsViewModel implements PropertyChangeListener {
     }
 
     public void sendMessage(String text) {
-        Message message = new Message(text, modelFactory.getLoginModel().getUser().getUserName());
-        modelFactory.getChatModel().sendMessage(message);
+        Message message = new Message(text, model.getUser().getUserName());
+        model.addMessage(message);
     }
 
     private void userAdded(PropertyChangeEvent event) {
