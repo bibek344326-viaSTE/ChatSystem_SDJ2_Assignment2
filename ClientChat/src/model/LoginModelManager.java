@@ -1,5 +1,7 @@
 package model;
 
+import mediator.Client;
+
 public class LoginModelManager implements LoginModel {
     private Client client;
     private User user;

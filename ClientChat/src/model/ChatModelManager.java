@@ -1,5 +1,7 @@
 package model;
 
+import mediator.Client;
+
 import java.util.List;
 
 public class ChatModelManager implements ChatModel {
@@ -29,20 +31,20 @@ public class ChatModelManager implements ChatModel {
         return client.getUserList();
     }
 
-    @Override
-    public void sendPrivateMessage(PrivateChat privateMessage) {
-        client.sendPrivateMessage(privateMessage);
-    }
-
-    @Override
-    public boolean doesPrivateMessageExists(String username1, String username2) {
-        return client.doesPrivateMessageExists(username1, username2);
-    }
-
-    @Override
-    public List<Message> getUsersMessage(String userName1, String userName2) {
-        PrivateChat privateMessage = new PrivateChat(userName1, userName2);
-        return client.getUsersMessage(privateMessage);
-    }
+//    @Override
+//    public void sendPrivateMessage(PrivateChat privateMessage) {
+//        client.sendPrivateMessage(privateMessage);
+//    }
+//
+//    @Override
+//    public boolean doesPrivateMessageExists(String username1, String username2) {
+//        return client.doesPrivateMessageExists(username1, username2);
+//    }
+//
+//    @Override
+//    public List<Message> getUsersMessage(String userName1, String userName2) {
+//        PrivateChat privateMessage = new PrivateChat(userName1, userName2);
+//        return client.getUsersMessage(privateMessage);
+//    }
 }
 

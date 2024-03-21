@@ -4,35 +4,36 @@ import java.io.Serializable;
 
 public class User implements Serializable {
     private String userName;
-    private String password;
+    //private String password;
 
-    public User(String userName, String password){
+    public User(String userName){
         this.userName=userName;
-        this.password=password;
+        //this.password=password;
     }
-    public User(String userName)
-    {
-        this.userName=userName;
-        this.password=null;
-    }
+//    public User(String userName)
+//    {
+//        this.userName=userName;
+//        this.password=null;
+//    }
 
     public String getUserName() {
 
         return userName;
     }
 
-    public String getPassword() {
-
-        return password;
-    }
+//    public String getPassword() {
+//
+//        return password;
+//    }
 
     public boolean equals(Object obj) {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
         User other = (User) obj;
-        return userName.equals(other.userName) &&
-                password.equals(other.password);
+        return userName.equals(other.userName);
+        //&&
+        //password.equals(other.password);
 
     }
 
@@ -40,7 +41,7 @@ public class User implements Serializable {
     public String toString() {
         return "User{" +
                 "userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
+              //  ", password='" + password + '\'' +
                 '}';
     }
 }

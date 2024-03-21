@@ -10,8 +10,8 @@ public interface ChatModel  {
 
     List<String> getUsernames();
 
-    void sendPrivateMessage(PrivateChat privateChat);
-    boolean doesPrivateMessageExists(String username1, String username2);
-
-    List<Message> getUsersMessage(String userName1, String username2);
+//    void sendPrivateMessage(PrivateChat privateChat);
+//    boolean doesPrivateMessageExists(String username1, String username2);
+//
+//    List<Message> getUsersMessage(String userName1, String username2);
 }

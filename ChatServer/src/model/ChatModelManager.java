@@ -21,44 +21,44 @@ public class ChatModelManager {
         //  support.firePropertyChange("addMessage",null,message);   // message OR messageList to send ??
     }
 
-    public void addPrivateMessage(PrivateChat privateMessage) {
-        if (doesPrivateMessageExists(privateMessage)){
-            for (int i = 0; i < privateMessageList.size(); i++) {
-                if (privateMessage.equals(privateMessageList.get(i))){
-                    privateMessageList.get(i).addMessage(privateMessage.getSendMessage());
-                    System.out.println("Message added to existing");
-                }
+//    public void addPrivateMessage(PrivateChat privateMessage) {
+//        if (doesPrivateMessageExists(privateMessage)){
+//            for (int i = 0; i < privateMessageList.size(); i++) {
+//                if (privateMessage.equals(privateMessageList.get(i))){
+//                    privateMessageList.get(i).addMessage(privateMessage.getSendMessage());
+//                    System.out.println("Message added to existing");
+//                }
+//
+//            }
+//        }
+//        else{
+//            privateMessage.addMessage(privateMessage.getSendMessage());
+//            privateMessageList.add(privateMessage);
+//            System.out.println("Message added to new");
+//        }
+//
+//
+//    }
 
-            }
-        }
-        else{
-            privateMessage.addMessage(privateMessage.getSendMessage());
-            privateMessageList.add(privateMessage);
-            System.out.println("Message added to new");
-        }
+//    public List<Message> getPrivateMessage(PrivateChat arg) {
+//        for (int i = 0; i < privateMessageList.size(); i++) {
+//            if (arg.equals(privateMessageList.get(i))){
+//                return privateMessageList.get(i).getMessageList().getMessages();
+//            }
+//        }
+//        return null;
+//    }
 
 
-    }
-
-    public List<Message> getPrivateMessage(PrivateChat arg) {
-        for (int i = 0; i < privateMessageList.size(); i++) {
-            if (arg.equals(privateMessageList.get(i))){
-                return privateMessageList.get(i).getMessageList().getMessages();
-            }
-        }
-        return null;
-    }
-
-
-    private boolean doesPrivateMessageExists(PrivateChat privateMessage) {
-        for (int i = 0; i < privateMessageList.size(); i++) {
-            if (privateMessageList.get(i).equals(privateMessage)){
-                return true;
-            }
-
-        }
-        return false;
-    }
+//    private boolean doesPrivateMessageExists(PrivateChat privateMessage) {
+//        for (int i = 0; i < privateMessageList.size(); i++) {
+//            if (privateMessageList.get(i).equals(privateMessage)){
+//                return true;
+//            }
+//
+//        }
+//        return false;
+//    }
 
     public List<Message> getMessages() {
         return messageList;

@@ -7,5 +7,6 @@
     </content>
     <orderEntry type="jdk" jdkName="21" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="ChatSystem_SDJ2_Assignment2" />
   </component>
 </module>
