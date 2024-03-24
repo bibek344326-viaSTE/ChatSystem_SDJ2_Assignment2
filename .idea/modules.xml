@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/ChatServer/ChatServer.iml" filepath="$PROJECT_DIR$/ChatServer/ChatServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/ChatSystem_SDJ2_Assignment2.iml" filepath="$PROJECT_DIR$/ChatSystem_SDJ2_Assignment2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ClientChat/ClientChat.iml" filepath="$PROJECT_DIR$/ClientChat/ClientChat.iml" />
     </modules>
   </component>
 </project>
