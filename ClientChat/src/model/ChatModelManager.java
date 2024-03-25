@@ -1,10 +1,15 @@
 package model;
 
 import mediator.Client;
+import utility.observer.javaobserver.NamedPropertyChangeSubject;
 
 import java.util.List;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
-public class ChatModelManager implements ChatModel {
+
+
+public class ChatModelManager implements ChatModel, NamedPropertyChangeSubject {
     private Client client;
 
 
@@ -26,10 +31,13 @@ public class ChatModelManager implements ChatModel {
 
 
 
+
+
     @Override
     public List<String> getUsernames() {
         return client.getUserList();
     }
+
 
 //    @Override
 //    public void sendPrivateMessage(PrivateChat privateMessage) {

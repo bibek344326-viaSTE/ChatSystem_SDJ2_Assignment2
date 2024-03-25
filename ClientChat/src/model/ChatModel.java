@@ -1,8 +1,9 @@
 package model;
 
 import java.util.List;
+import utility.observer.javaobserver.NamedPropertyChangeSubject;
 
-public interface ChatModel  {
+public interface ChatModel extends NamedPropertyChangeSubject  {
 
 
     void sendMessage(Message message);
