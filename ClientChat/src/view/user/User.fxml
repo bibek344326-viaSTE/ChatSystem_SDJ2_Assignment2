@@ -24,10 +24,15 @@
                 <Font size="24.0" />
             </font>
         </Button>
-        <Button layoutX="441.0" layoutY="226.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="42.0" prefWidth="80.0" text="Cancel">
+        <Button layoutX="441.0" layoutY="223.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="42.0" prefWidth="80.0" text="Cancel">
             <font>
                 <Font size="18.0" />
             </font>
         </Button>
+      <Label fx:id="errorLabel" layoutX="14.0" layoutY="231.0" text="Error" textFill="RED">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
