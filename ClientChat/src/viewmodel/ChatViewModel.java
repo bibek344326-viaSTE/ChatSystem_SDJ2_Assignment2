@@ -55,7 +55,7 @@ public class ChatViewModel implements PropertyChangeListener {
         try
         {
 
-            model.sendMessage(headerProperty.get(), inputProperty.get());
+            model.sendMessage(inputProperty.get());
 
 
             inputProperty.set("");  //  Just clearing the input field after pressing button
