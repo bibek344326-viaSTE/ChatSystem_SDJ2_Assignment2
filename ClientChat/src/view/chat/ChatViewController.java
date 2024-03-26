@@ -46,7 +46,7 @@ public class ChatViewController
     //triggered by pressing the Send button
     @FXML public void sendPressed()
     {
-        chatViewModel.send();
+        chatViewModel.send(inputField.getText());
     }
 
 

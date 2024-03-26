@@ -28,8 +28,6 @@ public class UserViewModel
     public void reset()
     {
         errorProperty.set(null);
-        User userName = model.getUsername();
-        usernameProperty.set(userName.getUsername());
     }
 
     public StringProperty getErrorProperty()

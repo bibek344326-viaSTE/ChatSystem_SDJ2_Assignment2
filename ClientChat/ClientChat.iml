@@ -10,5 +10,6 @@
     <orderEntry type="library" name="lib" level="application" />
     <orderEntry type="module" module-name="ChatServer" />
     <orderEntry type="library" name="MyObserver-1.4" level="application" />
+    <orderEntry type="library" name="lib2" level="application" />
   </component>
 </module>

@@ -5,6 +5,7 @@ import javafx.beans.property.StringProperty;
 import model.ChatModel;
 
 import model.Log;
+import model.Message;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -50,12 +51,12 @@ public class ChatViewModel implements PropertyChangeListener {
     }
 
 
-    public void send()
+    public void send(String text)
     {
         try
         {
 
-            model.sendMessage(inputProperty.get());
+            model.sendMessage(new Message(text, viewModelState.getUsername()));
 
 
             inputProperty.set("");  //  Just clearing the input field after pressing button

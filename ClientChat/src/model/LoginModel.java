@@ -2,7 +2,7 @@ package model;
 
 
 
-public interface LoginModel  {
+public interface LoginModel  extends  Subject{
     boolean isConnectionPossible(String username);
 
     boolean addUser(String username, String password);

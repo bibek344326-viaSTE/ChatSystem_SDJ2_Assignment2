@@ -20,7 +20,7 @@ public class ViewHandler
     public ViewHandler(ViewModelFactory viewModelFactory)
     {
         this.viewModelFactory = viewModelFactory;
-        currentScene = new Scene(new Region());
+       // currentScene = new Scene(new Region());
     }
 
     public void start(Stage primaryStage)

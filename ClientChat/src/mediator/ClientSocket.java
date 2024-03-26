@@ -14,7 +14,6 @@ import java.util.List;
 
 public class ClientSocket implements Client {
     private PropertyChangeSupport support;
-    //  private String userName;
 
 
     public ClientSocket() {
@@ -88,36 +87,6 @@ public class ClientSocket implements Client {
         return false;
     }
 
-//    @Override
-//    public void sendPrivateMessage(PrivateMessage privateMessage) {
-//        try {
-//            Request response = request(privateMessage,"addPrivateMessage");
-//        } catch (IOException | ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    @Override
-//    public boolean doesPrivateMessageExists(String username1, String username2) {
-//        try {
-//            Request response = request(new String[]{username1,username2},"doesPrivateMessageExists");
-//            return (boolean) response.getArg();
-//        } catch (IOException | ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        return false;
-//    }
-//
-//    @Override
-//    public List<Message> getUsersMessage(PrivateMessage privateMessage) {
-//        try {
-//            Request response = request(privateMessage,"getUsersMessage");
-//            return (List<Message>) response.getArg();
-//        } catch (IOException | ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
 
 
     private void listenToServer(ObjectInputStream inFromServer, ObjectOutputStream outToServer, User user) {
@@ -132,9 +101,6 @@ public class ClientSocket implements Client {
                 } else if (response.getType().equals("userRemoved")) {
                     support.firePropertyChange("userRemoved",null,response.getArg());
                 }
-//                else if (response.getType().equals("addPrivateMessage")){
-//                    support.firePropertyChange("addPrivateMessage",null,response.getArg());
-//                }
             }
 
 
