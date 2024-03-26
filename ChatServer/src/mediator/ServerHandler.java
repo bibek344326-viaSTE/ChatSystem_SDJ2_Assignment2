@@ -1,10 +1,12 @@
 package mediator;
 
 import model.*;
+import utils.MessageFactory;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.Socket;
 import java.util.List;
 
@@ -17,13 +19,15 @@ public class ServerHandler implements Runnable {
     private User user;
     private ConnectionPool pool;
     private LoginModelManager loginModelManager;
+    private MessageFactory messageFactory;
 
-    public ServerHandler(Socket socket, ChatModelManager chatModelManager, LoginModelManager loginModelManager, ConnectionPool pool) {
+
+    public ServerHandler(Socket socket, ChatModelManager chatModelManager, LoginModelManager loginModelManager, ConnectionPool pool, MessageFactory messageFactory) {
         this.socket = socket;
         this.pool = pool;
         this.chatModelManager = chatModelManager;
         this.loginModelManager = loginModelManager;
-
+        this.messageFactory = messageFactory;
 
         try {
             outToClient = new ObjectOutputStream(socket.getOutputStream());
@@ -67,8 +71,12 @@ public class ServerHandler implements Runnable {
                     outToClient.writeObject(new Request("getMessage", temp));
                     break;
                 } else if ("addMessage".equals(request.getType())) {
-                    chatModelManager.addMessage((Message) request.getArg());
-                    pool.broadcastToAll((Message) request.getArg());
+                    Message message = (Message) request.getArg();
+                    String messageType = "standard";
+                    Message newMessage = (Message) messageFactory.createMessage(messageType, message);
+
+                    chatModelManager.addMessage(newMessage);
+                    pool.broadcastToAll(newMessage);
                     break;
                 }
 //

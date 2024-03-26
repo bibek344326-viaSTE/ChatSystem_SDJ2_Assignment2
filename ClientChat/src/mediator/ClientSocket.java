@@ -3,6 +3,7 @@ package mediator;
 import model.Message;
 import model.Request;
 import model.User;
+import utils.MessageFactory;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -16,10 +17,11 @@ public class ClientSocket implements Client {
     private PropertyChangeSupport support;
     //  private String userName;
 
+    private final MessageFactory messageFactory;
 
-    public ClientSocket() {
+    public ClientSocket(MessageFactory messageFactory) {
+        this.messageFactory = messageFactory;
         support = new PropertyChangeSupport(this);
-
     }
 
     @Override
@@ -185,5 +187,17 @@ public class ClientSocket implements Client {
     @Override
     public void removeListener(String eventName, PropertyChangeListener listener) {
         support.removePropertyChangeListener(eventName, listener);
+    }
+    public void sendMessageToServer(String messageType, Object content) {
+        try {
+            Message message = (Message) messageFactory.createMessage(messageType, content);
+            if (message != null) {
+                sendMessage(message);
+            } else {
+                System.out.println("Failed to create message.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
