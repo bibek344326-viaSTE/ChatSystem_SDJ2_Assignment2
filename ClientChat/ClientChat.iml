@@ -10,5 +10,7 @@
     <orderEntry type="library" name="lib" level="application" />
     <orderEntry type="module" module-name="ChatServer" />
     <orderEntry type="library" name="MyObserver-1.4" level="application" />
+    <orderEntry type="library" name="javafx-swt" level="application" />
+    <orderEntry type="module" module-name="ChatSystem_SDJ2_Assignment2" />
   </component>
 </module>
