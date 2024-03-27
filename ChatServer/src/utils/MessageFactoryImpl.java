@@ -1,3 +1,7 @@
+package utils;
+
+import model.Message;
+import model.User;
 import utils.MessageFactory;
 
 import java.io.Serializable;
@@ -13,7 +17,7 @@ public class MessageFactoryImpl implements MessageFactory {
         messageTypes = new HashMap<>();
         messageTypes.put("Request", Request.class);
         messageTypes.put("Message", Message.class);
-        messageTypes.put("PrivateMessage", PrivateMessage.class);
+        //messageTypes.put("PrivateMessage", PrivateMessage.class);
         messageTypes.put("User", User.class);
     }
 

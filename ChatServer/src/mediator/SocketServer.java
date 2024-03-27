@@ -3,6 +3,7 @@ package mediator;
 import model.ChatModelManager;
 import model.LoginModelManager;
 import utils.MessageFactory;
+import utils.MessageFactoryImpl;
 
 import java.io.IOException;
 import java.net.ServerSocket;

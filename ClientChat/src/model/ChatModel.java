@@ -11,6 +11,11 @@ public interface ChatModel extends NamedPropertyChangeSubject  {
 
     List<String> getUsernames();
 
+    User getUsername();
+
+    void setUsername(User username);
+
+
 //    void sendPrivateMessage(PrivateChat privateChat);
 //    boolean doesPrivateMessageExists(String username1, String username2);
 //

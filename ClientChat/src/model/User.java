@@ -44,4 +44,8 @@ public class User implements Serializable {
                 ", password='" + password + '\'' +
                 '}';
     }
+
+    public String getUsername() {
+        return userName;
+    }
 }

@@ -2,11 +2,11 @@ package mediator;
 
 import model.*;
 import utils.MessageFactory;
+import utils.Request;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.net.Socket;
 import java.util.List;
 

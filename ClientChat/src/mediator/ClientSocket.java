@@ -1,7 +1,7 @@
 package mediator;
 
 import model.Message;
-import model.Request;
+import utils.Request;
 import model.User;
 import utils.MessageFactory;
 

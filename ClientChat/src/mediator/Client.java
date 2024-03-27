@@ -2,7 +2,7 @@ package mediator;
 
 
 import model.Message;
-import model.Subject;
+import utils.Subject;
 import model.User;
 
 import java.util.List;
