@@ -11,8 +11,8 @@ public class ChatApp extends Application {
     public void start(Stage stage) throws Exception {
         ClientFactory clientFactory = new ClientFactory();
         ModelFactory modelFactory = new ModelFactory(clientFactory);
-        ViewModelFactory viewModelFactory = new ViewModelFactory(modelFactory.getChatModel());
+        ViewModelFactory viewModelFactory = new ViewModelFactory(modelFactory);
         ViewHandler viewHandler = new ViewHandler(viewModelFactory);
-        viewHandler.start(stage);
+        viewHandler.start();
     }
 }

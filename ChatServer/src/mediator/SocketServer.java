@@ -19,7 +19,7 @@ public class SocketServer {
 
     public void startServer() {
         try {
-            ServerSocket welcomeSocket = new ServerSocket(9009);
+            ServerSocket welcomeSocket = new ServerSocket(6789);
             System.out.println("Server started....");
             ConnectionPool cp = new ConnectionPool();
             while (true) {

@@ -24,7 +24,7 @@ public class ClientSocket implements Client {
     @Override
     public void startListeningToServer(User user) {
         try {
-            Socket socket = new Socket("localhost", 9009);
+            Socket socket = new Socket("localhost", 6789);
             ObjectOutputStream outToServer = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream inFromServer = new ObjectInputStream(socket.getInputStream());
 
@@ -136,7 +136,7 @@ public class ClientSocket implements Client {
     }
 
     private Request request(Object arg, String type) throws IOException, ClassNotFoundException {
-        Socket socket = new Socket("localhost", 9009);
+        Socket socket = new Socket("localhost", 6789);
         ObjectOutputStream outToServer = new ObjectOutputStream(socket.getOutputStream());
         ObjectInputStream inFromServer = new ObjectInputStream(socket.getInputStream());
         outToServer.writeObject(new Request(type, arg));

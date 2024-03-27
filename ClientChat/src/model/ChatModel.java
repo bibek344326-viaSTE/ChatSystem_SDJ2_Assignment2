@@ -9,4 +9,8 @@ public interface ChatModel extends Subject  {
     void sendMessage(Message message);
 
     void setUsername(User username);
+
+    List<Message> getMessages();
+
+    List<String> getUsernames();
 }

@@ -1,6 +1,7 @@
 package view;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
@@ -8,13 +9,14 @@ import view.chat.ChatViewController;
 import view.user.UserViewController;
 import viewmodel.ViewModelFactory;
 
+import java.io.IOException;
+
 public class ViewHandler
 {
-    private Stage primaryStage;
-    private Scene currentScene;
+    private Stage stage;
+    private Scene chatScene, userLoginScene ;
     private ViewModelFactory viewModelFactory;
-    private ChatViewController chatViewController;
-    private UserViewController userViewController;
+
 
 
     public ViewHandler(ViewModelFactory viewModelFactory)
@@ -23,93 +25,50 @@ public class ViewHandler
        // currentScene = new Scene(new Region());
     }
 
-    public void start(Stage primaryStage)
+    public void start()
     {
-        this.primaryStage = primaryStage;
-        openView("user");
+        this.stage = new Stage();
+        openLogin();
     }
 
-    public void openView(String id)
-    {
-        Region root = null;
-        switch (id)
-        {
-            case "chat":
-                root = loadChatView("Chat.fxml");
-                System.out.println(root);
-                break;
-            case "user":
-                root = loadUserView("User.fxml");
-                System.out.println(root);
-                break;
-        }
-        currentScene.setRoot(root);
-        String title = "";
-        if (root.getUserData() != null)
-        {
-            title += root.getUserData();
-        }
+    public void openChat() {
+        if (chatScene == null) {
+            try {
+                Parent root = loadFXML("../view/chat/Chat.fxml");
+                stage.setTitle("Chat");
+                chatScene = new Scene(root);
 
-        primaryStage.setTitle(title);
-        primaryStage.setScene(currentScene);
-        //primaryStage.setWidth(root.getPrefWidth());
-        //primaryStage.setHeight(root.getPrefHeight());
-        primaryStage.show();
-    }
-
-    public void closeView()
-    {
-        primaryStage.close();
-    }
-
-    private Region loadUserView(String fxmlFile)
-    {
-        if (userViewController == null)
-        {
-            try
-            {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource(fxmlFile));
-                Region root = loader.load();
-                userViewController = loader.getController();
-                userViewController
-                        .init(this, viewModelFactory.getUserViewModel(), root);
-            }
-            catch (Exception e)
-            {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        else
-        {
-            userViewController.reset();
-        }
-        return userViewController.getRoot();
+        stage.setScene(chatScene);
+        stage.show();
+
     }
+    public void openLogin() {
+        if (userLoginScene == null) {
+            try {
+                Parent root = loadFXML("../view/user/User.fxml");
+                userLoginScene = new Scene(root);
+                stage.setTitle("User");
 
-    private Region loadChatView(String fxmlFile)
-    {
-        if (chatViewController == null)
-        {
-            try
-            {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource(fxmlFile));
-                Region root = loader.load();
-
-                chatViewController = loader.getController();
-                chatViewController
-                        .init(this, viewModelFactory.getChatViewModel(), root);
-            }
-            catch (Exception e)
-            {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        else
-        {
-            chatViewController.reset();
-        }
-        return chatViewController.getRoot();
+        stage.setScene(userLoginScene);
+        stage.show();
     }
+
+    private Parent loadFXML(String path) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(path));
+        Parent root = loader.load();
+
+        ViewController ctrl = loader.getController();
+        ctrl.init(this, viewModelFactory);
+        return root;
+    }
+
 }

@@ -2,15 +2,22 @@ package view.chat;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import view.ViewController;
 import viewmodel.ChatViewModel;
 import view.ViewHandler;
+import viewmodel.ViewModelFactory;
 
-public class ChatViewController
+import static javafx.beans.binding.Bindings.bindBidirectional;
+
+public class ChatViewController implements ViewController
 {
-    @FXML private Label headerLabel;
+    public ListView listView;
+    public TextField messageTextField;
+    //@FXML private Label headerLabel;
     @FXML private TextArea viewList;
     @FXML private TextField inputField;
     @FXML private Label errorLabel;
@@ -19,35 +26,39 @@ public class ChatViewController
     private ChatViewModel chatViewModel;
 
     //initializations and bindings
-    public void init(ViewHandler viewHandler,
-                     ChatViewModel chatViewModel, Region root)
-    {
-        this.root = root;
-        this.viewHandler = viewHandler;
-        this.chatViewModel=chatViewModel;
-        headerLabel.textProperty().bindBidirectional(chatViewModel.getHeaderProperty());
-        viewList.textProperty().bindBidirectional(chatViewModel.getListProperty());
-        inputField.textProperty().bindBidirectional(chatViewModel.getInputProperty());
-        errorLabel.textProperty().bindBidirectional(chatViewModel.getErrorProperty());
 
-        reset();
-    }
     public void reset()
     {
         chatViewModel.reset();
     }
 
-    public Region getRoot()
-    {
-        return root;
-    }
+
 
 
     //triggered by pressing the Send button
     @FXML public void sendPressed()
     {
-        chatViewModel.send(inputField.getText());
+        chatViewModel.sendMessage(inputField.getText());
+        inputField.clear();
     }
 
+    @FXML public void logOffPressed()
+    {
+        chatViewModel.logOut();
+        viewHandler.openLogin();
 
+    }
+
+    @Override
+    public void init(ViewHandler viewHandler, ViewModelFactory viewModelFactory) {
+        this.viewHandler = viewHandler;
+        this.chatViewModel = viewModelFactory.getChatViewModel();
+        chatViewModel.loadMessages();
+      //  headerLabel.textProperty().bindBidirectional(chatViewModel.getHeaderProperty());
+        listView.setItems(chatViewModel.getMessages());
+       inputField.textProperty().bindBidirectional(chatViewModel.getInputProperty());
+        errorLabel.textProperty().bind(chatViewModel.getErrorProperty());
+
+        reset();
+    }
 }

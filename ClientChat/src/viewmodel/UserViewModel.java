@@ -1,10 +1,12 @@
 package viewmodel;
 
+import com.sun.webkit.Timer;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.ChatModel;
+import model.ModelFactory;
 import model.User;
 
 public class UserViewModel
@@ -13,13 +15,13 @@ public class UserViewModel
     private StringProperty usernameProperty;
     private ChatModel model;
     private ViewModelState viewState;
+    private ModelFactory modelFactory;
 
 
 
-    public UserViewModel(ChatModel model, ViewModelState viewState)
+    public UserViewModel(ModelFactory modelFactory)
     {
-        this.model = model;
-        this.viewState = viewState;
+      this.modelFactory = modelFactory;
 
         errorProperty = new SimpleStringProperty();
         usernameProperty = new SimpleStringProperty();
@@ -43,6 +45,15 @@ public class UserViewModel
 
     public void setUsername(User username) {
         this.model.setUsername(username);
+    }
+    public boolean onLogin(String username) {
+        User user = new User(username);
+        //System.out.println(user);
+        if(!modelFactory.getLoginModel().isLoginPossible(user)) {
+            errorProperty.set("Username not available");
+            return false;
+        }
+        return true;
     }
 
 }

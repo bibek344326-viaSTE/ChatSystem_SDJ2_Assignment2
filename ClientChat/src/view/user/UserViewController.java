@@ -1,26 +1,18 @@
 package view.user;
+
 import javafx.fxml.FXML;
-import javafx.scene.layout.Region;
-import model.User;
-import view.ViewHandler;
-import viewmodel.UserViewModel;
 import javafx.scene.control.Label;
-import model.ChatModel;
-import java.awt.*;
-
-
-
-
-import javafx.beans.binding.Bindings;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import model.User;
+import view.ViewController;
+import view.ViewHandler;
+import viewmodel.UserViewModel;
+import viewmodel.ViewModelFactory;
 
-public class UserViewController {
+import java.awt.event.ActionEvent;
+
+public class UserViewController implements ViewController {
     @FXML
     private TextField textField;
     @FXML
@@ -31,12 +23,6 @@ public class UserViewController {
     private UserViewModel viewModel;
 
     public void init(ViewHandler viewHandler, UserViewModel viewModel, Region root) {
-        this.viewHandler = viewHandler;
-        this.viewModel = viewModel;
-        this.root = root;
-
-        errorLabel.textProperty().bind(viewModel.getErrorProperty());
-        this.textField.textProperty().bindBidirectional(viewModel.getUsernameProperty());
 
     }
 
@@ -50,24 +36,22 @@ public class UserViewController {
 
     @FXML
     private void onSubmit() {
-        String username = textField.getText();
-
-        // Validate the username
-        if (username.isEmpty()) {
-            errorLabel.setText("Username cannot be empty.");
-            return;
+        if (viewModel.onLogin(textField.getText())) {
+            viewHandler.openChat();
         }
-
-        User newUser = new User(username);
-
-        viewModel.setUsername(newUser);
-
-
-        viewHandler.openView("Chat");
     }
 
-    @FXML
-    private void onCancel() {
-        viewHandler.closeView();
+    @Override
+    public void init(ViewHandler viewHandler, ViewModelFactory viewModelFactory) {
+        this.viewHandler = viewHandler;
+        this.viewModel = viewModelFactory.getUserViewModel();
+        errorLabel.textProperty().bind(viewModel.getErrorProperty());
+        this.textField.textProperty().bindBidirectional(viewModel.getUsernameProperty());
+
     }
+
+//    @FXML
+//    private void onCancel() {
+//        viewHandler.closeView();
+//    }
 }

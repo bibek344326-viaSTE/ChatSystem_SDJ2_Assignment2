@@ -20,7 +20,7 @@ public class ModelFactory {
 
     public LoginModel getLoginModel() {
         if (loginModel == null) {
-            loginModel = new LoginModelManager(cf.getClient(),loginModel.getUser());
+            loginModel = new LoginModelManager(cf.getClient());
         }
         return loginModel;
     }

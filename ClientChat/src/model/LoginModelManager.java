@@ -12,9 +12,10 @@ public class LoginModelManager implements LoginModel {
 
     private PropertyChangeSupport support;
 
-    public LoginModelManager(Client client, User user) {
+    public LoginModelManager(Client client) {
         this.client = client;
-        this.user = user;
+
+        support = new PropertyChangeSupport(this);
         client.addListener("userAdded",this::userAdded);
         client.addListener("userRemoved",this::userRemoved);
 
